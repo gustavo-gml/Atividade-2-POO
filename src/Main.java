@@ -1,8 +1,4 @@
-import entities.Aluno;
-import entities.Animal;
-import entities.Gato;
-import entities.Cachorro;
-import entities.Produto;
+import entities.*;
 
 import java.util.Scanner;
 
@@ -35,25 +31,90 @@ public class Main{
             a.emitirSom();
         }
 
-        try{
-            System.out.println("\n\n------Calculadora--------------\n");
-            System.out.println("Selecione uma opção: ");
-            System.out.println("1 - Somar dois números");
-            System.out.println("2 - Somar três inteiros");
-            System.out.println("3 - Subtrair dois números");
-            System.out.println("4 - Multiplicar dois números");
-            System.out.println("5 - Dividir dois números");
-            int resp = sc.nextInt();
+        int resp = 0;
+        int a,b,c;
+        do {
+            try {
+                System.out.println("\n\n------Calculadora--------------\n");
+                System.out.println("Selecione uma opção: ");
+                System.out.println("1 - Somar dois números");
+                System.out.println("2 - Somar três inteiros");
+                System.out.println("3 - Subtrair dois números");
+                System.out.println("4 - Multiplicar dois números");
+                System.out.println("5 - Dividir dois números");
+                System.out.println("6 - Somar dois números decimais");
+                System.out.println("0 - Encerrar");
 
-            switch (resp){
-                case 1:
-                    System.out.println("Digite o némero 1");
+                resp = Integer.parseInt(sc.nextLine());
+
+                if (resp == 0) break;
+
+                Calculadora calc = new Calculadora();
+
+                switch (resp) {
+                    case 1:
+                        System.out.print("Digite o primeiro número: ");
+                        a = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o segundo número: ");
+                        b = Integer.parseInt(sc.nextLine());
+                        System.out.println("Resultado: " + calc.soma(a, b));
+                        break;
+
+                    case 2:
+                        System.out.print("Digite o primeiro número: ");
+                        a = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o segundo número: ");
+                        b = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o terceiro número: ");
+                        c = Integer.parseInt(sc.nextLine());
+                        System.out.println("Resultado: " + calc.soma(a, b, c));
+                        break;
+
+                    case 3:
+                        System.out.print("Digite o primeiro número: ");
+                        a = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o segundo número: ");
+                        b = Integer.parseInt(sc.nextLine());
+                        System.out.println("Resultado: " + calc.sub(a, b));
+                        break;
+
+                    case 4:
+                        System.out.print("Digite o primeiro número: ");
+                        a = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o segundo número: ");
+                        b = Integer.parseInt(sc.nextLine());
+                        System.out.println("Resultado: " + calc.mult(a, b));
+                        break;
+
+                    case 5:
+                        System.out.print("Digite o primeiro número: ");
+                        a = Integer.parseInt(sc.nextLine());
+                        System.out.print("Digite o segundo número: ");
+                        b = Integer.parseInt(sc.nextLine());
+                        System.out.println("Resultado: " + calc.div(a, b));
+                        break;
+
+                    case 6:
+                        System.out.print("Digite o primeiro número decimal (ex: 10.5): ");
+                        double a2 = Double.parseDouble(sc.nextLine());
+                        System.out.print("Digite o segundo número decimal: ");
+                        double b2 = Double.parseDouble(sc.nextLine());
+                        System.out.println("Resultado: " + calc.soma(a2, b2));
+                        break;
+
+                    default:
+                        System.out.println("Opção inválida!");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Digite apenas NÚMEROS válidos!");
+            } catch (ArithmeticException e) {
+                System.out.println("Erro matemático: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
             }
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }catch (RuntimeException){
-            System.out.println("Digite NUMEROS !");
-        }
+
+        } while (resp != 0);
 
     }
 }
